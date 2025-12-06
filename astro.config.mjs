@@ -1,0 +1,300 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import starlightThemeRapide from 'starlight-theme-rapide';
+
+// https://astro.build/config
+export default defineConfig({
+	integrations: [
+		starlight({
+			plugins: [starlightThemeRapide()],
+			title: 'Cline',
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/faustbrian' }],
+			sidebar: [
+				{
+					label: 'Ancestry',
+					items: [
+						{ label: 'Getting Started', slug: 'ancestry/getting-started' },
+						{ label: 'Basic Usage', slug: 'ancestry/basic-usage' },
+						{ label: 'Fluent API', slug: 'ancestry/fluent-api' },
+						{ label: 'Configuration', slug: 'ancestry/configuration' },
+						{ label: 'Multiple Types', slug: 'ancestry/multiple-types' },
+						{ label: 'Custom Key Mapping', slug: 'ancestry/custom-key-mapping' },
+						{ label: 'Events', slug: 'ancestry/events' },
+						{ label: 'Snapshots', slug: 'ancestry/snapshots' },
+					],
+				},
+				{
+					label: 'Bearer',
+					items: [
+						{ label: 'Getting Started', slug: 'bearer/getting-started' },
+						{ label: 'Authentication', slug: 'bearer/authentication' },
+						{ label: 'Basic Usage', slug: 'bearer/basic-usage' },
+						{ label: 'Custom Token Types', slug: 'bearer/custom-token-types' },
+						{ label: 'Derived Keys', slug: 'bearer/derived-keys' },
+						{ label: 'IP & Domain Restrictions', slug: 'bearer/ip-domain-restrictions' },
+						{ label: 'Rate Limiting', slug: 'bearer/rate-limiting' },
+						{ label: 'Revocation & Rotation', slug: 'bearer/revocation-rotation' },
+						{ label: 'Token Generators', slug: 'bearer/token-generators' },
+						{ label: 'Token Metadata', slug: 'bearer/token-metadata' },
+						{ label: 'Token Relationships', slug: 'bearer/token-relationships' },
+						{ label: 'Usage Tracking', slug: 'bearer/usage-tracking' },
+						{ label: 'Audit Logging', slug: 'bearer/audit-logging' },
+					],
+				},
+				{
+					label: 'Coding Standard',
+					items: [
+						{ label: 'Basic Usage', slug: 'coding-standard/basic-usage' },
+						{ label: 'Custom Fixers', slug: 'coding-standard/custom-fixers' },
+						{ label: 'Presets', slug: 'coding-standard/presets' },
+					],
+				},
+				{
+					label: 'Enums',
+					items: [
+						{ label: 'Getting Started', slug: 'enums/getting-started' },
+						{ label: 'Instantiation', slug: 'enums/instantiation' },
+						{ label: 'Invokable Cases', slug: 'enums/invokable-cases' },
+						{ label: 'Collections', slug: 'enums/collections' },
+						{ label: 'Comparable', slug: 'enums/comparable' },
+						{ label: 'Metadata', slug: 'enums/metadata' },
+						{ label: 'Quick Reference', slug: 'enums/quick-reference' },
+					],
+				},
+				{
+					label: 'Ferret',
+					items: [
+						{ label: 'Getting Started', slug: 'ferret/getting-started' },
+						{ label: 'Directory Loading', slug: 'ferret/directory-loading' },
+						{ label: 'Format Conversion', slug: 'ferret/format-conversion' },
+						{ label: 'Typed Accessors', slug: 'ferret/typed-accessors' },
+						{ label: 'Encryption', slug: 'ferret/encryption' },
+					],
+				},
+				{
+					label: 'FP',
+					items: [
+						{ label: 'Pipes & Composition', slug: 'fp/pipes-and-composition' },
+						{ label: 'Array Functions', slug: 'fp/array-functions' },
+						{ label: 'String Functions', slug: 'fp/string-functions' },
+						{ label: 'Object Functions', slug: 'fp/object-functions' },
+						{ label: 'Pipeable Functions', slug: 'fp/pipeable-functions' },
+						{ label: 'Utility Traits', slug: 'fp/utility-traits' },
+						{ label: 'Examples', slug: 'fp/examples' },
+					],
+				},
+				{
+					label: 'Globby',
+					items: [
+						{ label: 'Getting Started', slug: 'globby/getting-started' },
+						{ label: 'Basic Usage', slug: 'globby/basic-usage' },
+						{ label: 'Filtering Options', slug: 'globby/filtering-options' },
+						{ label: 'Gitignore Integration', slug: 'globby/gitignore-integration' },
+						{ label: 'Advanced Patterns', slug: 'globby/advanced-patterns' },
+					],
+				},
+				{
+					label: 'HCL',
+					items: [
+						{ label: 'Getting Started', slug: 'hcl/getting-started' },
+						{ label: 'HCL Syntax', slug: 'hcl/hcl-syntax' },
+						{ label: 'Expressions', slug: 'hcl/expressions' },
+						{ label: 'JSON Conversion', slug: 'hcl/json-conversion' },
+						{ label: 'Validation', slug: 'hcl/validation' },
+					],
+				},
+				{
+					label: 'Huckle',
+					items: [
+						{ label: 'Getting Started', slug: 'huckle/getting-started' },
+						{ label: 'Artisan Commands', slug: 'huckle/artisan-commands' },
+						{ label: 'Connection Commands', slug: 'huckle/connection-commands' },
+						{ label: 'Encryption', slug: 'huckle/encryption' },
+						{ label: 'Environment Management', slug: 'huckle/environment-management' },
+						{ label: 'Config Cache Compatibility', slug: 'huckle/config-cache-compatibility' },
+						{ label: 'Exports Syncing', slug: 'huckle/exports-syncing' },
+						{ label: 'HCL Conversion', slug: 'huckle/hcl-conversion' },
+						{ label: 'Nested Hierarchy', slug: 'huckle/nested-hierarchy-credentials' },
+					],
+				},
+				{
+					label: 'Idempotency',
+					items: [
+						{ label: 'Basic Usage', slug: 'idempotency/basic-usage' },
+						{ label: 'Supported Formats', slug: 'idempotency/supported-formats' },
+						{ label: 'Hash Algorithms', slug: 'idempotency/hash-algorithms' },
+						{ label: 'Output Formats', slug: 'idempotency/output-formats' },
+						{ label: 'Custom Normalizers', slug: 'idempotency/custom-normalizers' },
+						{ label: 'Advanced Examples', slug: 'idempotency/advanced-examples' },
+					],
+				},
+				{
+					label: 'Intl',
+					items: [
+						{ label: 'Getting Started', slug: 'intl/getting-started' },
+						{ label: 'Country', slug: 'intl/country' },
+						{ label: 'Currency', slug: 'intl/currency' },
+						{ label: 'Language & Locale', slug: 'intl/language-locale' },
+						{ label: 'TimeZone', slug: 'intl/timezone' },
+						{ label: 'Casts & Rules', slug: 'intl/casts-and-rules' },
+					],
+				},
+				{
+					label: 'Keyphrase',
+					items: [
+						{ label: 'Getting Started', slug: 'keyphrase/getting-started' },
+						{ label: 'Password Generation', slug: 'keyphrase/password-generation' },
+						{ label: 'Passphrase Generation', slug: 'keyphrase/passphrase-generation' },
+						{ label: 'Mnemonic Generation', slug: 'keyphrase/mnemonic-generation' },
+						{ label: 'Entropy', slug: 'keyphrase/entropy' },
+					],
+				},
+				{
+					label: 'Manager',
+					items: [
+						{ label: 'Getting Started', slug: 'manager/getting-started' },
+						{ label: 'Abstract Manager', slug: 'manager/abstract-manager' },
+						{ label: 'Connector Interface', slug: 'manager/connector-interface' },
+						{ label: 'Manager Interface', slug: 'manager/manager-interface' },
+					],
+				},
+				{
+					label: 'Monad',
+					items: [
+						{ label: 'Quick Reference', slug: 'monad/quick-reference' },
+						{ label: 'Option', slug: 'monad/option' },
+						{ label: 'Result', slug: 'monad/result' },
+						{ label: 'Either', slug: 'monad/either' },
+						{ label: 'Transpose', slug: 'monad/transpose' },
+					],
+				},
+				{
+					label: 'Morphism',
+					items: [
+						{ label: 'Getting Started', slug: 'morphism/getting-started' },
+						{ label: 'Basic Usage', slug: 'morphism/basic-usage' },
+						{ label: 'Config-Based Setup', slug: 'morphism/config-based-setup' },
+						{ label: 'Strict Enforcement', slug: 'morphism/strict-enforcement' },
+						{ label: 'Migrations', slug: 'morphism/migrations' },
+						{ label: 'Testing', slug: 'morphism/testing' },
+					],
+				},
+				{
+					label: 'Numerus',
+					items: [
+						{ label: 'Basic Usage', slug: 'numerus/basic-usage' },
+						{ label: 'Chaining', slug: 'numerus/chaining' },
+						{ label: 'Comparisons', slug: 'numerus/comparisons' },
+						{ label: 'Formatting', slug: 'numerus/formatting' },
+					],
+				},
+				{
+					label: 'Phone Number',
+					items: [
+						{ label: 'Getting Started', slug: 'phone-number/getting-started' },
+						{ label: 'Basic Usage', slug: 'phone-number/basic-usage' },
+						{ label: 'Exception Handling', slug: 'phone-number/exception-handling' },
+						{ label: 'Metadata', slug: 'phone-number/metadata' },
+					],
+				},
+				{
+					label: 'Postal Code',
+					items: [
+						{ label: 'Getting Started', slug: 'postal-code/getting-started' },
+						{ label: 'Basic Usage', slug: 'postal-code/basic-usage' },
+						{ label: 'Custom Handlers', slug: 'postal-code/custom-handlers' },
+						{ label: 'Exception Handling', slug: 'postal-code/exception-handling' },
+						{ label: 'Laravel Integration', slug: 'postal-code/laravel-integration' },
+					],
+				},
+				{
+					label: 'Sequencer',
+					items: [
+						{ label: 'Getting Started', slug: 'sequencer/getting-started' },
+						{ label: 'Execution Strategies', slug: 'sequencer/execution-strategies' },
+						{ label: 'Execution Guards', slug: 'sequencer/execution-guards' },
+					],
+				},
+				{
+					label: 'Toml',
+					items: [
+						{ label: 'Getting Started', slug: 'toml/getting-started' },
+						{ label: 'Parsing', slug: 'toml/parsing' },
+						{ label: 'Building', slug: 'toml/building' },
+						{ label: 'Data Types', slug: 'toml/data-types' },
+						{ label: 'Error Handling', slug: 'toml/error-handling' },
+					],
+				},
+				{
+					label: 'Throw',
+					items: [
+						{ label: 'Getting Started', slug: 'throw/getting-started' },
+						{ label: 'Basic Usage', slug: 'throw/basic-usage' },
+						{ label: 'Assertions', slug: 'throw/assertions' },
+						{ label: 'Base Exceptions', slug: 'throw/base-exceptions' },
+						{ label: 'Error Context', slug: 'throw/error-context' },
+						{ label: 'Error Wrapping', slug: 'throw/error-wrapping' },
+						{ label: 'Error Comparison', slug: 'throw/error-comparison' },
+						{ label: 'Exception Groups', slug: 'throw/exception-groups' },
+						{ label: 'Exception Filtering', slug: 'throw/exception-filtering' },
+						{ label: 'Exception Notes', slug: 'throw/exception-notes' },
+						{ label: 'Exception Transformation', slug: 'throw/exception-transformation' },
+						{ label: 'Attempt Monad', slug: 'throw/attempt-monad' },
+						{ label: 'Result Integration', slug: 'throw/result-integration' },
+						{ label: 'Deferred Cleanup', slug: 'throw/deferred-cleanup' },
+						{ label: 'HTTP Responses', slug: 'throw/http-responses' },
+						{ label: 'Integration Patterns', slug: 'throw/integration-patterns' },
+					],
+				},
+				{
+					label: 'Toggl',
+					items: [
+						{ label: 'Getting Started', slug: 'toggl/getting-started' },
+						{ label: 'Basic Usage', slug: 'toggl/basic-usage' },
+						{ label: 'Strategies', slug: 'toggl/strategies' },
+						{ label: 'Feature Groups', slug: 'toggl/feature-groups' },
+						{ label: 'Dependencies', slug: 'toggl/dependencies' },
+						{ label: 'Variants', slug: 'toggl/variants' },
+						{ label: 'Scoped Features', slug: 'toggl/scoped-features' },
+						{ label: 'Scope Context', slug: 'toggl/scope-context' },
+						{ label: 'Time Bombs', slug: 'toggl/time-bombs' },
+						{ label: 'Middleware', slug: 'toggl/middleware' },
+						{ label: 'Snapshot Pruning', slug: 'toggl/snapshot-pruning' },
+						{ label: 'Advanced Usage', slug: 'toggl/advanced-usage' },
+					],
+				},
+				{
+					label: 'Tracer',
+					items: [
+						{ label: 'Getting Started', slug: 'tracer/getting-started' },
+						{ label: 'Basic Usage', slug: 'tracer/basic-usage' },
+						{ label: 'Strategies', slug: 'tracer/strategies' },
+						{ label: 'Staged Changes', slug: 'tracer/staged-changes' },
+						{ label: 'Approval Workflows', slug: 'tracer/approval-workflows' },
+						{ label: 'Advanced Usage', slug: 'tracer/advanced-usage' },
+					],
+				},
+				{
+					label: 'Warden',
+					items: [
+						{ label: 'Getting Started', slug: 'warden/getting-started' },
+						{ label: 'Roles & Abilities', slug: 'warden/roles-and-abilities' },
+						{ label: 'Checking Permissions', slug: 'warden/checking-permissions' },
+						{ label: 'Removing Permissions', slug: 'warden/removing-permissions' },
+						{ label: 'Forbidding', slug: 'warden/forbidding' },
+						{ label: 'Model Restrictions', slug: 'warden/model-restrictions' },
+						{ label: 'Ownership', slug: 'warden/ownership' },
+						{ label: 'Authorization', slug: 'warden/authorization' },
+						{ label: 'Querying', slug: 'warden/querying' },
+						{ label: 'Multi-Guard Support', slug: 'warden/multi-guard-support' },
+						{ label: 'Multi-Tenancy', slug: 'warden/multi-tenancy' },
+						{ label: 'Configuration', slug: 'warden/configuration' },
+						{ label: 'Console Commands', slug: 'warden/console-commands' },
+						{ label: 'Migration Guide', slug: 'warden/migrating-from-other-packages' },
+					],
+				},
+			],
+		}),
+	],
+});
