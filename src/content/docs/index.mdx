@@ -1,0 +1,163 @@
+---
+title: Cline
+description: PHP packages for configuration, validation, and application utilities.
+template: splash
+hero:
+  tagline: PHP packages for configuration, validation, and application utilities.
+  actions:
+    - text: Get Started
+      link: /hcl/getting-started/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/faustbrian
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Packages
+
+<CardGrid stagger>
+	<Card title="Analyzer" icon="seti:code-search" href="/analyzer/getting-started/">
+		Static analysis and code inspection utilities for PHP applications.
+	</Card>
+	<Card title="Ancestry" icon="seti:folder" href="/ancestry/getting-started/">
+		Track parent-child hierarchies for Laravel Eloquent models with fluent API, events, and snapshots.
+	</Card>
+	<Card title="Arbiter" icon="seti:lock" href="/arbiter/getting-started/">
+		Policy-based decision making and authorization for complex business rules and access control.
+	</Card>
+	<Card title="Assert" icon="seti:todo" href="/assert/getting-started/">
+		Expressive assertions with chainable API, lazy evaluation, and custom assertion support.
+	</Card>
+	<Card title="Babel" icon="seti:info" href="/babel/getting-started/">
+		Script detection, text directionality, character analysis, and Unicode normalization.
+	</Card>
+	<Card title="Bearer" icon="seti:lock" href="/bearer/getting-started/">
+		API token management for Laravel with custom token types, rate limiting, IP restrictions, and audit logging.
+	</Card>
+	<Card title="Cascade" icon="seti:pipeline" href="/cascade/getting-started/">
+		Resolve data from multiple sources with fallback chains, transformers, bulk resolution, and event-driven architecture.
+	</Card>
+	<Card title="Cloak" icon="seti:lock" href="/cloak/getting-started/">
+		Prevent sensitive exception details from leaking in Laravel applications with secure error handling.
+	</Card>
+	<Card title="Clock" icon="seti:time" href="/clock/getting-started/">
+		PSR-20 Clock implementation with testing utilities, decorators, and Laravel integration.
+	</Card>
+	<Card title="Coding Standard" icon="seti:config" href="/coding-standard/basic-usage/">
+		PHP CS Fixer configuration with presets and custom fixers for consistent code style.
+	</Card>
+	<Card title="Enums" icon="seti:json" href="/enums/getting-started/">
+		Enhanced PHP enums with instantiation helpers, collections, metadata, and comparison utilities.
+	</Card>
+	<Card title="Ferret" icon="seti:config" href="/ferret/getting-started/">
+		Configuration management supporting PHP, JSON, YAML, TOML, INI, XML, and NEON formats with typed accessors and encryption.
+	</Card>
+	<Card title="FP" icon="seti:code-search" href="/fp/pipes-and-composition/">
+		Functional programming utilities for PHP with pipes, composition, and collection functions.
+	</Card>
+	<Card title="Globby" icon="seti:folder" href="/globby/getting-started/">
+		File pattern matching using glob patterns. Find files with powerful filtering, gitignore integration, and advanced patterns.
+	</Card>
+	<Card title="HCL" icon="seti:json" href="/hcl/getting-started/">
+		Parse HashiCorp Configuration Language (HCL) in PHP. Read Terraform, Nomad, Consul, or any HCL-based configuration files.
+	</Card>
+	<Card title="Huckle" icon="seti:lock" href="/huckle/getting-started/">
+		Laravel package for managing credentials using HCL syntax. Environment organization, encryption, and sensitive value protection.
+	</Card>
+	<Card title="Idempotency" icon="seti:todo" href="/idempotency/basic-usage/">
+		Generate deterministic idempotency keys from data structures with multiple hash algorithms and output formats.
+	</Card>
+	<Card title="Immutable" icon="seti:lock" href="/immutable/getting-started/">
+		Traits for creating immutable objects in PHP with static mutation methods and exception handling.
+	</Card>
+	<Card title="Intl" icon="seti:info" href="/intl/getting-started/">
+		Internationalization value objects for countries, currencies, languages, locales, and timezones with Laravel casts and validation.
+	</Card>
+	<Card title="Introspect" icon="seti:code-search" href="/introspect/getting-started/">
+		Deep PHP reflection utilities with fluent API for inspecting classes, methods, properties, attributes, and traits.
+	</Card>
+	<Card title="Keyphrase" icon="seti:lock" href="/keyphrase/getting-started/">
+		Generate secure passwords, passphrases, and BIP39 mnemonics with entropy measurement.
+	</Card>
+	<Card title="Manager" icon="seti:pipeline" href="/manager/getting-started/">
+		Abstract connection management pattern for databases, caches, queues, and external services.
+	</Card>
+	<Card title="Message Bus" icon="seti:pipeline" href="/message-bus/getting-started/">
+		Command and query bus implementation with middleware support and automatic handler discovery.
+	</Card>
+	<Card title="Mint" icon="seti:todo" href="/mint/getting-started/">
+		Unified identifier generation for Laravel with UUID, ULID, Snowflake, NanoID, TypeID, KSUID, and more.
+	</Card>
+	<Card title="Monad" icon="seti:code-search" href="/monad/option/">
+		Option, Result, and Either monads for type-safe error handling and null safety in PHP.
+	</Card>
+	<Card title="Morphism" icon="seti:db" href="/morphism/getting-started/">
+		Enhanced polymorphic relationships for Laravel with strict type enforcement and clean morph maps.
+	</Card>
+	<Card title="Numerus" icon="seti:info" href="/numerus/basic-usage/">
+		Immutable numeric value object with chainable arithmetic, formatting, and internationalization.
+	</Card>
+	<Card title="Open RPC" icon="seti:json" href="/open-rpc/getting-started/">
+		OpenRPC specification support with content descriptors, schemas, and value objects.
+	</Card>
+	<Card title="Phone Number" icon="seti:info" href="/phone-number/getting-started/">
+		Parse, validate, and format phone numbers using libphonenumber with carrier and timezone metadata.
+	</Card>
+	<Card title="Postal Code" icon="seti:maven" href="/postal-code/getting-started/">
+		Validate and format postal/ZIP codes for countries worldwide with custom handler support.
+	</Card>
+	<Card title="Relay" icon="seti:json" href="/relay/getting-started/">
+		HTTP client library with authentication, middleware, caching, rate limiting, and resilience patterns.
+	</Card>
+	<Card title="Relex" icon="seti:code-search" href="/relex/getting-started/">
+		Expressive regular expressions with pattern builder and value objects for readable regex patterns.
+	</Card>
+	<Card title="Retry" icon="seti:todo" href="/retry/getting-started/">
+		Retry failed operations with configurable backoff strategies, limits, and error handling.
+	</Card>
+	<Card title="RPC" icon="seti:json" href="/rpc/getting-started/">
+		Production-ready JSON-RPC 2.0 and XML-RPC server/client implementation with OpenRPC specification support.
+	</Card>
+	<Card title="Ruler" icon="seti:code-search" href="/ruler/getting-started/">
+		Business rules engine with DSL implementations, operators, and context-based rule evaluation.
+	</Card>
+	<Card title="Semver" icon="seti:info" href="/semver/getting-started/">
+		Semantic versioning library with version parsing, constraints, collections, and Laravel integration.
+	</Card>
+	<Card title="Sentinel" icon="seti:lock" href="/sentinel/getting-started/">
+		Multi-factor authentication for Laravel with TOTP, recovery codes, security keys, passkeys, and WebAuthn support.
+	</Card>
+	<Card title="Sequencer" icon="seti:todo" href="/sequencer/getting-started/">
+		Execute operation sequences with strategies, guards, transactions, and retry logic.
+	</Card>
+	<Card title="Shamir" icon="seti:lock" href="/shamir/getting-started/">
+		Shamir's Secret Sharing implementation for splitting secrets into shares with threshold reconstruction.
+	</Card>
+	<Card title="Strongly Typed ID" icon="seti:todo" href="/strongly-typed-id/getting-started/">
+		Type-safe identifiers for Laravel with UUID, ULID, NanoID, GUID, Sqid, and Hashids support.
+	</Card>
+	<Card title="Suspend" icon="seti:lock" href="/suspend/getting-started/">
+		Entity suspension management for Laravel with strategies, middleware, and context matching.
+	</Card>
+	<Card title="Throw" icon="seti:code-search" href="/throw/getting-started/">
+		Exception utilities with conditional throwing, error context, exception groups, and result integration.
+	</Card>
+	<Card title="Toggl" icon="seti:config" href="/toggl/getting-started/">
+		Feature flags for Laravel with strategies, variants, dependencies, scoping, and time bombs.
+	</Card>
+	<Card title="Toml" icon="seti:config" href="/toml/getting-started/">
+		Parse and build TOML configuration files with comprehensive data type support and detailed error handling.
+	</Card>
+	<Card title="Tracer" icon="seti:db" href="/tracer/getting-started/">
+		Model revision tracking for Laravel with diff strategies, staged changes, and approval workflows.
+	</Card>
+	<Card title="Volume" icon="seti:info" href="/volume/getting-started/">
+		Volume calculations for shipping with floor meters, loading meters, and validation utilities.
+	</Card>
+	<Card title="Warden" icon="seti:lock" href="/warden/getting-started/">
+		Role and permission management for Laravel with abilities, ownership, multi-tenancy, and authorization.
+	</Card>
+</CardGrid>
