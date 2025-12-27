@@ -22,7 +22,7 @@ A resource object MUST contain:
 ```json
 {
   "type": "order",
-  "id": "12345",
+  "id": "ord_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": {
     "status": "pending",
     "total": { "amount": "99.99", "currency": "USD" },
@@ -95,20 +95,66 @@ The `id` member uniquely identifies a resource within its type.
 
 ### ID Formats
 
-Recommended formats:
+**Recommended: Stripe-Style Prefixed IDs**
+
+Forrst recommends Stripe-style prefixed ULID identifiers for all resource types:
+
+```
+<prefix>_<ulid>
+```
+
+Examples:
+
+```
+op_01JG8Z9QXNB6V9K4PT7YSNWF3M    # Operation
+srv_01JG8Z9QXNB6V9K4PT7YSNWF3M   # Server
+func_01JG8Z9QXNB6V9K4PT7YSNWF3M  # Function
+res_01JG8Z9QXNB6V9K4PT7YSNWF3M   # Resource
+```
+
+**Benefits:**
+
+- **Sortable**: ULIDs encode timestamp, enabling chronological sorting
+- **Unique**: Cryptographically random component eliminates collision checks
+- **Readable**: Prefix indicates resource type at a glance
+- **Compact**: 26-character ULID vs 36-character UUID
+- **URL-safe**: No special characters requiring encoding
+
+**Configuration:**
+
+Configure ID generation in `config/rpc.php`:
+
+```php
+'extensions' => [
+    'async' => [
+        'operation_id' => [
+            'generator' => 'prefixed',
+            'prefix' => 'op',
+            'prefixed_generator' => 'ulid',
+        ],
+    ],
+],
+```
+
+**Alternative Formats:**
+
+If Stripe-style IDs don't fit your use case, these formats are also supported:
 
 | Format | Example | Notes |
 |--------|---------|-------|
-| UUID v4 | `"550e8400-e29b-41d4-a716-446655440000"` | Universal uniqueness |
+| **Stripe-style (recommended)** | `"op_01ARZ3NDEKTSV4RRFFQ69G5FAV"` | Type-prefixed ULID |
 | ULID | `"01ARZ3NDEKTSV4RRFFQ69G5FAV"` | Sortable, compact |
-| Prefixed | `"order_abc123xyz"` | Type-aware, readable |
+| UUID v7 | `"018d3f5a-45e2-7b4a-9c5f-abc123def456"` | Timestamp-based UUID |
+| UUID v4 | `"550e8400-e29b-41d4-a716-446655440000"` | Random UUID |
 | Integer (as string) | `"12345"` | Database primary keys |
+
+**Type Safety:**
 
 IDs MUST be strings even for numeric values:
 
 ```json
 // Correct
-{ "type": "order", "id": "12345" }
+{ "type": "order", "id": "op_01JG8Z9QXNB6V9K4PT7YSNWF3M" }
 
 // Incorrect
 { "type": "order", "id": 12345 }
@@ -137,7 +183,7 @@ Attribute names SHOULD:
 ```json
 {
   "type": "order",
-  "id": "12345",
+  "id": "ord_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": {
     "order_number": "ORD-2024-001",
     "status": "pending",
@@ -158,7 +204,7 @@ Attributes MAY contain nested objects and arrays:
 ```json
 {
   "type": "customer",
-  "id": "42",
+  "id": "cus_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": {
     "name": "Alice Smith",
     "email": "alice@example.com",
@@ -225,16 +271,16 @@ The `relationships` member describes connections to other resources.
 ```json
 {
   "type": "order",
-  "id": "12345",
+  "id": "ord_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": { ... },
   "relationships": {
     "customer": {
-      "data": { "type": "customer", "id": "42" }
+      "data": { "type": "customer", "id": "cus_01JG8Z9QXNB6V9K4PT7YSNWF3M" }
     },
     "items": {
       "data": [
-        { "type": "order_item", "id": "1" },
-        { "type": "order_item", "id": "2" }
+        { "type": "order_item", "id": "itm_01JG8Z9QXNB6V9K4PT7YSNWF3N" },
+        { "type": "order_item", "id": "itm_01JG8Z9QXNB6V9K4PT7YSNWF3P" }
       ]
     },
     "shipping_address": {
@@ -260,7 +306,7 @@ Each relationship MUST contain a `data` member:
 A resource identifier contains only `type` and `id`:
 
 ```json
-{ "type": "customer", "id": "42" }
+{ "type": "customer", "id": "cus_01JG8Z9QXNB6V9K4PT7YSNWF3M" }
 ```
 
 This is NOT a full resource object—it's a reference.
@@ -294,20 +340,20 @@ When including related resources, use the `included` array:
 {
   "data": {
     "type": "order",
-    "id": "12345",
+    "id": "ord_01JG8Z9QXNB6V9K4PT7YSNWF3M",
     "attributes": {
       "status": "pending"
     },
     "relationships": {
       "customer": {
-        "data": { "type": "customer", "id": "42" }
+        "data": { "type": "customer", "id": "cus_01JG8Z9QXNB6V9K4PT7YSNWF3M" }
       }
     }
   },
   "included": [
     {
       "type": "customer",
-      "id": "42",
+      "id": "cus_01JG8Z9QXNB6V9K4PT7YSNWF3M",
       "attributes": {
         "name": "Alice",
         "email": "alice@example.com"
@@ -335,7 +381,7 @@ The `meta` member contains non-standard information:
 ```json
 {
   "type": "order",
-  "id": "12345",
+  "id": "ord_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": { ... },
   "meta": {
     "permissions": ["read", "update"],
@@ -404,7 +450,7 @@ Response includes only requested fields:
 ```json
 {
   "type": "order",
-  "id": "12345",
+  "id": "ord_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": {
     "status": "pending",
     "total_amount": { "amount": "99.99", "currency": "USD" }
@@ -423,7 +469,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
 ```json
 {
   "type": "customer",
-  "id": "42",
+  "id": "cus_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": {
     "name": "Alice Smith",
     "email": "alice@example.com",
@@ -437,7 +483,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
 ```json
 {
   "type": "order",
-  "id": "12345",
+  "id": "ord_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": {
     "order_number": "ORD-2024-001",
     "status": "shipped",
@@ -446,16 +492,16 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
   },
   "relationships": {
     "customer": {
-      "data": { "type": "customer", "id": "42" }
+      "data": { "type": "customer", "id": "cus_01JG8Z9QXNB6V9K4PT7YSNWF3M" }
     },
     "items": {
       "data": [
-        { "type": "order_item", "id": "101" },
-        { "type": "order_item", "id": "102" }
+        { "type": "order_item", "id": "itm_01JG8Z9QXNB6V9K4PT7YSNWF3N" },
+        { "type": "order_item", "id": "itm_01JG8Z9QXNB6V9K4PT7YSNWF3P" }
       ]
     },
     "shipping_address": {
-      "data": { "type": "address", "id": "addr_789" }
+      "data": { "type": "address", "id": "addr_01JG8Z9QXNB6V9K4PT7YSNWF3Q" }
     }
   }
 }
@@ -466,7 +512,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
 ```json
 {
   "type": "document",
-  "id": "doc_abc",
+  "id": "doc_01JG8Z9QXNB6V9K4PT7YSNWF3M",
   "attributes": {
     "title": "Q4 Report",
     "content_type": "application/pdf",
@@ -487,7 +533,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
   "data": [
     {
       "type": "tracking_event",
-      "id": "evt_001",
+      "id": "evt_01JG8Z9QXNB6V9K4PT7YSNWF3M",
       "attributes": {
         "status": "in_transit",
         "location": "Helsinki Hub",
@@ -496,7 +542,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
     },
     {
       "type": "tracking_event",
-      "id": "evt_002",
+      "id": "evt_01JG8Z9QXNB6V9K4PT7YSNWF3N",
       "attributes": {
         "status": "out_for_delivery",
         "location": "Local Depot",
@@ -521,7 +567,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
 {
   "data": {
     "type": "shipment",
-    "id": "ship_12345",
+    "id": "ship_01JG8Z9QXNB6V9K4PT7YSNWF3M",
     "attributes": {
       "tracking_number": "MH726955185FI",
       "status": "in_transit",
@@ -530,15 +576,15 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
     },
     "relationships": {
       "origin": {
-        "data": { "type": "location", "id": "loc_001" }
+        "data": { "type": "location", "id": "loc_01JG8Z9QXNB6V9K4PT7YSNWF3N" }
       },
       "destination": {
-        "data": { "type": "location", "id": "loc_002" }
+        "data": { "type": "location", "id": "loc_01JG8Z9QXNB6V9K4PT7YSNWF3P" }
       },
       "events": {
         "data": [
-          { "type": "tracking_event", "id": "evt_001" },
-          { "type": "tracking_event", "id": "evt_002" }
+          { "type": "tracking_event", "id": "evt_01JG8Z9QXNB6V9K4PT7YSNWF3Q" },
+          { "type": "tracking_event", "id": "evt_01JG8Z9QXNB6V9K4PT7YSNWF3R" }
         ]
       }
     }
@@ -546,7 +592,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
   "included": [
     {
       "type": "location",
-      "id": "loc_001",
+      "id": "loc_01JG8Z9QXNB6V9K4PT7YSNWF3N",
       "attributes": {
         "name": "Helsinki Warehouse",
         "postal_code": "00100",
@@ -555,7 +601,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
     },
     {
       "type": "location",
-      "id": "loc_002",
+      "id": "loc_01JG8Z9QXNB6V9K4PT7YSNWF3P",
       "attributes": {
         "name": "Tampere Office",
         "postal_code": "33100",
@@ -564,7 +610,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
     },
     {
       "type": "tracking_event",
-      "id": "evt_001",
+      "id": "evt_01JG8Z9QXNB6V9K4PT7YSNWF3Q",
       "attributes": {
         "status": "picked_up",
         "occurred_at": "2024-01-14T10:00:00Z"
@@ -572,7 +618,7 @@ See [Sparse Fieldsets](extensions/query.md#sparse-fieldsets) for details.
     },
     {
       "type": "tracking_event",
-      "id": "evt_002",
+      "id": "evt_01JG8Z9QXNB6V9K4PT7YSNWF3R",
       "attributes": {
         "status": "in_transit",
         "occurred_at": "2024-01-15T08:00:00Z"
