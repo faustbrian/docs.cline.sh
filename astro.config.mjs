@@ -9,7 +9,7 @@ export default defineConfig({
         starlight({
             plugins: [starlightThemeRapide()],
             title: "Cline",
-            social: [{ icon: "github", label: "GitHub", href: "https://github.com/faustbrian" }],
+            social: [{ icon: "github", label: "GitHub", href: "https://git.cline.sh/faustbrian" }],
             sidebar: [
                 {
                     label: "Documentation",
