@@ -62,6 +62,15 @@ Responses always use the `errors` field (plural array):
 - The `errors` array MUST contain at least one error
 - Even single errors use the `errors` array format
 
+### HTTP Status Codes
+
+When using HTTP transport, the HTTP status code reflects the error type:
+
+- **Single error**: Uses the error's specific HTTP status code (e.g., 404 for `NOT_FOUND`, 401 for `UNAUTHORIZED`)
+- **Multiple errors**: Always returns `400 Bad Request` since HTTP can only express one status code and multiple errors may have different status codes
+
+See [Transport](transport.md) for complete HTTP status code mappings.
+
 ---
 
 ## Source Object

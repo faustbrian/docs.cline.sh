@@ -71,6 +71,34 @@ See [Errors](errors.md) for the complete mapping of error codes to HTTP status c
 | `502 Bad Gateway` | `DEPENDENCY_ERROR` |
 | `503 Service Unavailable` | `UNAVAILABLE`, `SERVER_MAINTENANCE`, `FUNCTION_MAINTENANCE` |
 
+**Multiple Errors:**
+
+When a response contains multiple errors with potentially different status codes, the HTTP status code MUST be `400 Bad Request`. This provides a consistent, generic client error status while the response body's `errors` array contains the specific error details with individual error codes.
+
+Example:
+```http
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "protocol": { "name": "forrst", "version": "0.1.0" },
+  "id": "req_456",
+  "result": null,
+  "errors": [
+    {
+      "code": "INVALID_ARGUMENTS",
+      "message": "Email format is invalid",
+      "source": { "pointer": "/call/arguments/email" }
+    },
+    {
+      "code": "INVALID_ARGUMENTS",
+      "message": "Quantity must be positive",
+      "source": { "pointer": "/call/arguments/quantity" }
+    }
+  ]
+}
+```
+
 ---
 
 ### Header Mapping
