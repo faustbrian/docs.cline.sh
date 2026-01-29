@@ -71,8 +71,6 @@ See [Errors](errors.md) for the complete mapping of error codes to HTTP status c
 | `502 Bad Gateway` | `DEPENDENCY_ERROR` |
 | `503 Service Unavailable` | `UNAVAILABLE`, `SERVER_MAINTENANCE`, `FUNCTION_MAINTENANCE` |
 
-**Exception:** Batch requests return `200 OK` with per-operation status codes in the response body. See [Batch Extension](extensions/batch.md).
-
 ---
 
 ### Header Mapping

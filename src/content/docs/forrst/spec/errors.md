@@ -117,40 +117,40 @@ For parse errors, indicates byte offset:
 
 Errors in the Forrst envelope or protocol handling:
 
-| Code | Retryable | Description |
-|------|-----------|-------------|
-| `PARSE_ERROR` | No | Request is not valid JSON |
-| `INVALID_REQUEST` | No | Request structure violates protocol |
-| `INVALID_PROTOCOL_VERSION` | No | Unsupported protocol version |
+| Code | Retryable | HTTP | Description |
+|------|-----------|------|-------------|
+| `PARSE_ERROR` | No | 400 | Request is not valid JSON |
+| `INVALID_REQUEST` | No | 400 | Request structure violates protocol |
+| `INVALID_PROTOCOL_VERSION` | No | 400 | Unsupported protocol version |
 
 ### Function Errors
 
 Errors in function resolution:
 
-| Code | Retryable | Description |
-|------|-----------|-------------|
-| `FUNCTION_NOT_FOUND` | No | Unknown function name |
-| `VERSION_NOT_FOUND` | No | Unknown version for the function |
-| `FUNCTION_DISABLED` | Yes | Function temporarily disabled |
-| `INVALID_ARGUMENTS` | No | Arguments failed validation |
-| `SCHEMA_VALIDATION_FAILED` | No | Arguments failed schema validation |
-| `EXTENSION_NOT_SUPPORTED` | No | Requested extension not supported by server |
-| `EXTENSION_NOT_APPLICABLE` | No | Requested extension not applicable to this function |
+| Code | Retryable | HTTP | Description |
+|------|-----------|------|-------------|
+| `FUNCTION_NOT_FOUND` | No | 404 | Unknown function name |
+| `VERSION_NOT_FOUND` | No | 404 | Unknown version for the function |
+| `FUNCTION_DISABLED` | Yes | 503 | Function temporarily disabled |
+| `INVALID_ARGUMENTS` | No | 400 | Arguments failed validation |
+| `SCHEMA_VALIDATION_FAILED` | No | 422 | Arguments failed schema validation |
+| `EXTENSION_NOT_SUPPORTED` | No | 400 | Requested extension not supported by server |
+| `EXTENSION_NOT_APPLICABLE` | No | 400 | Requested extension not applicable to this function |
 
 ### Authentication/Authorization Errors
 
-| Code | Retryable | Description |
-|------|-----------|-------------|
-| `UNAUTHORIZED` | No | Authentication required or failed |
-| `FORBIDDEN` | No | Authenticated but not permitted |
+| Code | Retryable | HTTP | Description |
+|------|-----------|------|-------------|
+| `UNAUTHORIZED` | No | 401 | Authentication required or failed |
+| `FORBIDDEN` | No | 403 | Authenticated but not permitted |
 
 ### Resource Errors
 
-| Code | Retryable | Description |
-|------|-----------|-------------|
-| `NOT_FOUND` | No | Requested resource does not exist |
-| `CONFLICT` | No | Operation conflicts with current state |
-| `GONE` | No | Resource existed but was deleted |
+| Code | Retryable | HTTP | Description |
+|------|-----------|------|-------------|
+| `NOT_FOUND` | No | 404 | Requested resource does not exist |
+| `CONFLICT` | No | 409 | Operation conflicts with current state |
+| `GONE` | No | 410 | Resource existed but was deleted |
 
 ### Operational Errors
 
@@ -171,19 +171,19 @@ Errors in function resolution:
 
 ### Async Errors
 
-| Code | Retryable | Description |
-|------|-----------|-------------|
-| `ASYNC_OPERATION_NOT_FOUND` | No | Unknown operation ID |
-| `ASYNC_OPERATION_FAILED` | No | Async operation failed permanently |
-| `ASYNC_CANNOT_CANCEL` | No | Operation cannot be cancelled (completed or not cancellable) |
+| Code | Retryable | HTTP | Description |
+|------|-----------|------|-------------|
+| `ASYNC_OPERATION_NOT_FOUND` | No | 404 | Unknown operation ID |
+| `ASYNC_OPERATION_FAILED` | No | 500 | Async operation failed permanently |
+| `ASYNC_CANNOT_CANCEL` | No | 400 | Operation cannot be cancelled (completed or not cancellable) |
 
 ### Batch Errors
 
-| Code | Retryable | Description |
-|------|-----------|-------------|
-| `BATCH_FAILED` | No | Atomic batch failed (one or more operations failed) |
-| `BATCH_TOO_LARGE` | No | Too many operations or payload too large |
-| `BATCH_TIMEOUT` | Yes | Batch execution exceeded timeout |
+| Code | Retryable | HTTP | Description |
+|------|-----------|------|-------------|
+| `BATCH_FAILED` | No | 400 | Atomic batch failed (one or more operations failed) |
+| `BATCH_TOO_LARGE` | No | 400 | Too many operations or payload too large |
+| `BATCH_TIMEOUT` | Yes | 504 | Batch execution exceeded timeout |
 
 ### Maintenance Errors
 

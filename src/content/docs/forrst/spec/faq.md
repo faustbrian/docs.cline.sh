@@ -255,21 +255,42 @@ String IDs avoid this entirely and support richer formats:
 
 ---
 
-## Why does Forrst use `error`/`errors` instead of HTTP status codes?
+## How does Forrst use HTTP status codes?
 
-HTTP status codes are transport-level. Forrst is transport-agnostic — it works over HTTP, message queues, or any other transport.
+Forrst uses a dual-channel approach for error reporting when using HTTP transport:
 
-Additionally, HTTP status codes are ambiguous:
+1. **HTTP status codes** — Semantic status codes (400, 404, 500, etc.) indicate the error category
+2. **`errors` array** — Provides detailed, structured error information with specific error codes
 
-- Is `404` "endpoint not found" or "resource not found"?
-- Is `500` a Forrst error or a proxy error?
-- Is `503` the service or a load balancer?
+### Why Both Channels?
 
-Forrst uses:
+**HTTP status codes enable infrastructure:**
 
-- HTTP `200` for all Forrst responses (the transport succeeded)
-- `error`/`errors` field for Forrst-level errors with explicit codes
+- Load balancers can route based on error status
+- HTTP middleware can retry on 5xx without parsing JSON
+- Monitoring tools can track error rates by status code
+- Caches can handle 404s without inspecting body
 
-Transport-level errors (502, 503, 504) indicate the request never reached Forrst.
+**The `errors` array provides precision:**
 
-See [Errors](errors.md) for the full error specification.
+- Machine-readable error codes (`FUNCTION_NOT_FOUND` vs `NOT_FOUND`)
+- Multiple validation errors in a single response
+- Source pointers to specific invalid fields
+- Structured error details for client handling
+
+### Status Code Mapping
+
+Common mappings:
+
+- `200 OK` — Success (no errors)
+- `400 Bad Request` — `PARSE_ERROR`, `INVALID_REQUEST`, `INVALID_ARGUMENTS`
+- `404 Not Found` — `NOT_FOUND`, `FUNCTION_NOT_FOUND`
+- `429 Too Many Requests` — `RATE_LIMITED`
+- `500 Internal Server Error` — `INTERNAL_ERROR`
+- `503 Service Unavailable` — `UNAVAILABLE`, `SERVER_MAINTENANCE`
+
+See [Transport](transport.md) for complete mappings and [Errors](errors.md) for the full error specification.
+
+### Transport-Agnostic Design
+
+While HTTP uses status codes, other transports (message queues, Unix sockets) rely solely on the `errors` array. This dual-channel approach works across all transports while enabling HTTP-specific optimizations.

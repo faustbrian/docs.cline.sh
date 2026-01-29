@@ -173,11 +173,11 @@ When using HTTP transport:
 | Method | MUST use `POST` |
 | Content-Type | MUST be `application/json` |
 | Endpoint | Service-defined (e.g., `/forrst`, `/rpc`) |
-| HTTP Status | MUST use `200` for all Forrst responses |
+| HTTP Status | MUST use semantic status codes reflecting error type |
 
-HTTP status codes SHOULD NOT indicate Forrst-level errors. Use the `error`/`errors` field.
+When using HTTP transport, status codes MUST reflect the error type. Success responses return `200 OK`; error responses return the appropriate HTTP status code matching the Forrst error code.
 
-Exception: Transport-level errors (502, 503, 504) indicate the request never reached the Forrst handler.
+See [Transport](transport.md) for complete HTTP status code mappings.
 
 ### Message Queues
 
